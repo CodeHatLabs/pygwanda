@@ -142,6 +142,10 @@ class ResourcePool(object):
             "count_served_from_pool": self.count_served_from_pool,
             }
 
+    def Preheat(self, count):
+        for res in [self.Get() for x in range(count)]:
+            self.Release(res)
+
     def _Pull(self):
         """
             def _Pull(self):
