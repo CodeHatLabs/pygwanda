@@ -1,5 +1,5 @@
 import threading
-from time import time
+from time import time as now
 
 
 CREATED = '_pygwanda_resource_pool_created__'
@@ -86,7 +86,7 @@ class ResourcePool(object):
         """
         # snapshot the current moment in time and prepare to validate
         #   the age of the available resources
-        now_time = time()
+        now_time = now()
         min_fresh_time = now_time - self.max_idle_time
         min_created_time = now_time - self.max_age
         kill_list = []
@@ -113,7 +113,7 @@ class ResourcePool(object):
             resource = self._CreateNewResource()
             # store this directly in the instance dict to bypass
             #   any class dunder machines (i.e. __setattr__)
-            resource.__dict__[CREATED] = time()
+            resource.__dict__[CREATED] = now()
             self.count_created += 1
         return resource
 
@@ -169,7 +169,7 @@ class ResourcePool(object):
             if (not self.pool_size_limit) or (len(self.__pool) < self.pool_size_limit):
                 # store this directly in the instance dict to bypass
                 #   any class dunder machines (i.e. __setattr__)
-                resource.__dict__[RELEASED] = time()
+                resource.__dict__[RELEASED] = now()
                 self.__pool.append(resource)
                 stored = True
             else:
