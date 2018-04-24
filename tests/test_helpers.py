@@ -24,6 +24,5 @@ class TestHelpers:
         self._do_characters_test(UNAMBIGUOUS_ALPHA)
         self._do_characters_test(UNAMBIGUOUS_ALHPANUM)
         self._do_characters_test(UNAMBIGUOUS_ASCII)
-        print()
 
 

@@ -102,4 +102,5 @@ class TestResourcePool:
             expected['pool_size_limit'] = -1
             expected['count_cleared'] = 1
             assert expected == pool.GetStatus()
-        print()
+
+
