@@ -6,7 +6,8 @@ class LazyMorpher(object):
         Where:
             `factory` is a function that creates and returns an object
             instance; the instance returned by the factory must be of a
-            class that inheirts from Python's native `object` class.
+            class that ultimately inheirts from Python's native
+            `object` class.
         What:
             `m` remains a LazyMorpher instance until you get or set
             an attribute or item on it, or until you use it as a
