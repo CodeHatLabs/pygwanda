@@ -9,7 +9,7 @@ class LazyMorpher(object):
             class that inheirts from Python's native `object` class.
         What:
             `m` remains a LazyMorpher instance until you get or set
-            an attribute or item on it, or until you invoke it as a
+            an attribute or item on it, or until you use it as a
             function (__call__ it), at which time it invokes the
             factory and fully morphs itself into the instance returned
             by the factory.
