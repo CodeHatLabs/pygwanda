@@ -14,27 +14,34 @@ class LazyMorpher(object):
             factory and fully morphs itself into the instance returned
             by the factory.
     """
+
     def __init__(self, factory):
         self.__dict__['__factory'] = factory
+
     def __call__(self, *args, **kwargs):
         return self.__morph()(*args, **kwargs)
+
     def __getattr__(self, key):
         return super().__getattr__(key) \
             if key == '_LazyMorpher__morph' \
             else getattr(self.__morph(), key)
+
     def __getitem__(self, key):
         return self.__morph()[key]
+
     def __morph(self):
         self.__dict__['__morphing'] = True
         obj = self.__dict__['__factory']()
         self.__class__ = obj.__class__
         self.__dict__ = obj.__dict__
         return self
+
     def __setattr__(self, key, value):
         if '__morphing' in self.__dict__:
             super().__setattr__(key, value)
         else:
             setattr(self.__morph(), key, value)
+
     def __setitem__(self, key, value):
         self.__morph()[key] = value
 
